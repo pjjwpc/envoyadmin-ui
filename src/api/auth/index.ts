@@ -12,10 +12,8 @@ export function loginApi(data: LoginData): AxiosPromise<LoginResult> {
   const formData = new FormData();
   formData.append("username", data.username);
   formData.append("password", data.password);
-  formData.append("captchaKey", data.captchaKey || "");
-  formData.append("captchaCode", data.captchaCode || "");
   return request({
-    url: "/api/v1/auth/login",
+    url: "/login",
     method: "post",
     data: formData,
     headers: {
@@ -29,17 +27,7 @@ export function loginApi(data: LoginData): AxiosPromise<LoginResult> {
  */
 export function logoutApi() {
   return request({
-    url: "/api/v1/auth/logout",
+    url: "/logout",
     method: "delete",
-  });
-}
-
-/**
- * 获取验证码
- */
-export function getCaptchaApi(): AxiosPromise<CaptchaResult> {
-  return request({
-    url: "/api/v1/auth/captcha",
-    method: "get",
   });
 }
